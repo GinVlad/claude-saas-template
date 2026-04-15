@@ -16,7 +16,7 @@ A ready-to-use Claude Code project template for building SaaS applications with 
 
 ```bash
 # Clone this template
-git clone https://github.com/YOUR_USERNAME/claude-saas-template.git my-saas-project
+git clone https://github.com/ginvlad/claude-saas-template.git my-saas-project
 
 # Or copy to existing project
 cp -r claude-saas-template/.claude your-project/
