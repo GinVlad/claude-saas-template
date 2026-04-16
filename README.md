@@ -1,14 +1,44 @@
 # Claude SaaS Template
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Claude Code](https://img.shields.io/badge/Claude%20Code-Compatible-blue)](https://claude.ai/code)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+
 A ready-to-use Claude Code project template for building SaaS applications with **agentic AI coordination**.
+
+## Requirements
+
+- **Claude Code** - CLI, Desktop App, or IDE Extension ([Get it here](https://claude.ai/code))
+- **Claude Model** - Sonnet 4 or Opus 4 recommended (Haiku works but less capable)
+- **Git** - For version control and session tracking
+
+### Optional (for generated code)
+- **Docker** - For local development with PostgreSQL + Redis
+- **Node.js 18+** - If using Next.js frontend
+- **Go 1.21+** - If using Go backend (or your preferred language)
+
+## Compatibility
+
+| Component | Version | Notes |
+|-----------|---------|-------|
+| Claude Code | 1.0+ | CLI, Desktop, Web, IDE extensions |
+| Claude Sonnet | 4.x | Recommended for most tasks |
+| Claude Opus | 4.x | Best for complex architecture decisions |
+| Claude Haiku | 4.x | Works but may miss nuance |
+
+> **Note:** This template uses markdown files only. No runtime dependencies. Works with any tech stack you choose.
+
+---
 
 ## Features
 
 - **Agentic Workflow** - 5-stage coordinated development: Brainstorm → Plan → Cook → Verify → Fix
-- **7 Specialized Agents** - CTO, Backend, Frontend, Database, Analytics, Tester, Security
-- **Modular Rules** - Load only relevant context per task
+- **8 Specialized Agents** - CTO, Backend, Frontend, Database, Analytics, Tester, Security, DevOps
+- **Modular Rules** - Load only relevant context per task (11 rule files)
 - **Session Tracking** - Always know where you left off
 - **Quality Gates** - User confirms before each stage transition
+- **Docker Ready** - Full Docker Compose setup with PostgreSQL + Redis
+- **Deployment Skills** - One-command deploy to Railway, Fly.io, Vercel
 
 ## Quick Start
 
@@ -68,14 +98,15 @@ claude
 your-project/
 ├── CLAUDE.md                    # Project overview (keep small!)
 └── .claude/
-    ├── agents/                  # 7 specialized agents
+    ├── agents/                  # 8 specialized agents
     │   ├── cto.md              # Architecture decisions
     │   ├── backend-dev.md      # Backend implementation
     │   ├── frontend-dev.md     # Frontend implementation
     │   ├── database.md         # Database design
     │   ├── analytics.md        # Metrics & tracking
     │   ├── tester.md           # QA & testing
-    │   └── security.md         # Security review
+    │   ├── security.md         # Security review
+    │   └── devops.md           # Infrastructure & deployment
     │
     ├── rules/                   # Per-task rules (load selectively)
     │   ├── session.md          # Current state (check first!)
@@ -85,7 +116,9 @@ your-project/
     │   ├── ai-integration.md   # AI provider rules
     │   ├── payments.md         # Payment integration
     │   ├── security.md         # Security requirements
-    │   └── testing.md          # Test conventions
+    │   ├── testing.md          # Test conventions
+    │   ├── deployment.md       # Docker & deployment
+    │   └── redis.md            # Redis/caching rules
     │
     ├── workflows/               # Agentic system
     │   ├── agentic-flow.md     # 5-stage flow
@@ -302,12 +335,18 @@ Create `.claude/skills/[skill-name].md`:
 | Skill | Description |
 |-------|-------------|
 | `/agentic` | Run agentic workflow |
-| `/generate-api-endpoint` | Scaffold Go API endpoint |
-| `/generate-component` | Scaffold React component |
+| `/generate-api-endpoint` | Scaffold API endpoint |
+| `/generate-component` | Scaffold UI component |
 | `/generate-migration` | Create DB migration |
-| `/add-template` | Add new template (for template-based SaaS) |
 | `/security-audit` | Run security review |
 | `/test-endpoint` | Generate API tests |
+| `/docker-setup` | Generate Docker + Compose configs |
+| `/deploy-railway` | Deploy to Railway.app |
+| `/deploy-fly` | Deploy to Fly.io |
+
+### Want More Deployment Options?
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) to add plugins for Render, DigitalOcean, AWS, etc.
 
 ---
 
@@ -383,14 +422,27 @@ Ideas welcome:
 
 ---
 
-## License
+## Troubleshooting
 
-MIT - Use freely, attribution appreciated.
+### Claude doesn't follow the workflow
+- Make sure you're using Sonnet 4 or Opus 4 (not Haiku)
+- Check that `.claude/` folder is in your project root
+- Try `/agentic resume` to re-sync state
+
+### Skills not recognized
+- Skills are guidance files, not native Claude Code commands
+- Type the command (e.g., `/agentic add auth`) and Claude will read the skill file
+- Ensure skill files exist in `.claude/skills/`
+
+### Session state lost
+- Check `rules/session.md` exists
+- Claude Code may have started fresh context - run `/agentic resume`
 
 ---
 
-## Credits
+## License
 
-Inspired by:
-- Claude Code best practices
-- Real SaaS development workflows
+MIT License - Use freely, attribution appreciated.
+
+See [LICENSE](LICENSE) for details.
+

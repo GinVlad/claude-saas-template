@@ -40,6 +40,8 @@ Load only what's needed per task:
 | Payments | `rules/payments.md` |
 | Security | `rules/security.md` |
 | Testing | `rules/testing.md` |
+| Deployment | `rules/deployment.md` |
+| Redis/Cache | `rules/redis.md` |
 
 **Always check `rules/session.md` first.**
 
@@ -51,21 +53,27 @@ Load only what's needed per task:
 ├── rules/              # Per-task rules (keep context small)
 │   └── session.md      # Current state (check first!)
 ├── workflows/          # Agentic flow system
-│   ├── agentic-flow.md
-│   ├── coordinator.md
-│   └── templates/
-├── agents/             # Role definitions (7 agents)
+├── agents/             # 8 agents (CTO, Backend, Frontend, DB, Analytics, Tester, Security, DevOps)
 ├── plans/              # Feature plans + progress
-│   └── completed/
-├── skills/             # Custom commands
-├── hooks/              # Git hooks
+├── skills/             # Commands (/agentic, /docker-setup, /deploy, etc.)
+├── hooks/              # Git + deploy hooks
 └── memory/             # Persistent context
 ```
 
 ## Commands
 ```bash
-# Add your project-specific commands here
-make dev      # Start development
-make test     # Run tests
-make lint     # Run linters
+# Development
+docker compose up -d              # Start all services
+docker compose logs -f            # View logs
+docker compose down               # Stop all
+
+# Or without Docker
+make dev                          # Start development
+make test                         # Run tests
+make lint                         # Run linters
+
+# Deployment
+/docker-setup full                # Generate Docker configs
+/deploy-railway                   # Deploy to Railway
+/deploy-fly                       # Deploy to Fly.io
 ```
